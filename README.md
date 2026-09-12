@@ -83,31 +83,38 @@ the catalog site works fully offline with `content/catalog.json`.
 3. Your site lives at `https://eglibra.github.io/everythingmustgo/`.
    (`.nojekyll` is included so Pages doesn't process the folder.)
 
-## GitHub authentication for the Admin (one-time)
+## Logging into the Admin (Access Token method)
 
-Sveltia CMS needs a GitHub OAuth app so you can log in and commit changes to the repo.
+Sveltia CMS does not yet support GitHub PKCE for single-page apps, so the easiest
+way to log in for a personal, single-user site is a **Personal Access Token (PAT)** —
+no OAuth app, no server needed. (This is the recommended quick-start method in the
+[Sveltia CMS GitHub backend docs](https://sveltiacms.app/en/docs/backends/github#authentication).)
 
-1. Go to <https://github.com/settings/applications/new> (or your org's app settings).
-   The form has these fields — fill them in:
-   - **Application name:** `Everythingmustgo!` (whatever you like)
-   - **Homepage URL:** `https://eglibra.github.io/everythingmustgo/`
-   - **Application description:** `Admin panel for Everythingmustgo!` (whatever you like)
-   - **Authorization callback URL:** `https://eglibra.github.io/everythingmustgo/admin/`
-2. After creating it, copy the **Client ID** (starts with `Iv23.`).
-3. Open `admin/config.yml` and replace the placeholder `app_id` value with your Client ID:
-   ```yaml
-   backend:
-     name: github
-     repo: eglibra/everythingmustgo
-     branch: main
-     auth_type: pkce
-     app_id: "Iv23.12345abcdef..."   # <- your Client ID
-   ```
-   Sveltia CMS supports PKCE, so **no client secret** is needed.
-4. Commit the change and reload `/admin/`. Sign in with GitHub → you can edit.
+1. Generate a personal access token at
+   <https://github.com/settings/tokens/new>:
+   - Give it any note, e.g. `Everythingmustgo CMS`.
+   - **Expiration:** choose whatever you like.
+   - **Scopes:** select **`repo`** (full repository access — needed to read/write
+     content and upload images). That's the only scope required.
+2. Click **Generate token** and **copy the token** (`ghp_…`).
+3. Open your admin page: <https://eglibra.github.io/everythingmustgo/admin/>
+4. Click **Sign In with Token** and paste the token. It is stored in your browser's
+   local storage and used to commit changes to your repo.
 
-> If you change the deploy URL, update `site_url` in `admin/config.yml`, the
-> **Homepage URL**, and the **Authorization callback URL** to match.
+No changes to `admin/config.yml` are needed for token login — the config only needs:
+```yaml
+backend:
+  name: github
+  repo: eglibra/everythingmustgo
+  branch: main
+```
+
+> The token lives only in your browser. To log out, use the CMS menu → **Log out**,
+> or revoke the token on GitHub (Settings → Developer settings → Personal access tokens).
+
+> If you later want OAuth (login-with-GitHub button) for multiple users, you can set
+> up an OAuth client instead — see [Sveltia CMS Authenticator](https://github.com/sveltia/sveltia-cms-auth)
+> and add a `base_url` to the backend config in `admin/config.yml`.
 
 ## Notes
 
