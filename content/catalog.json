@@ -1,11 +1,11 @@
 {
   "items": [
     {
-      "name": "Tamagotchi (Used)",
-      "price": "$8.00",
-      "description": "Virtual pet from 1997. Beeps at night. Still works! Batteries not included.",
+      "name": "Darth Vador Lamp",
+      "price": "20R$",
+      "description": "A Darth Vador lamp that works fine, looks good and suits as decoration!",
       "images": [
-        { "image": "/images/sample-1.png" }
+        "/images/sample-1.png"
       ]
     },
     {
@@ -13,7 +13,7 @@
       "price": "$12.00",
       "description": "Fuzzy talking creature. Slightly creepy but very cute. Good condition.",
       "images": [
-        { "image": "/images/sample-2.png" }
+        "/images/sample-2.png"
       ]
     },
     {
@@ -21,7 +21,7 @@
       "price": "$3.50",
       "description": "Glow in the dark yoyo. Classic 90s toy. Goes up, goes down.",
       "images": [
-        { "image": "/images/sample-3.png" }
+        "/images/sample-3.png"
       ]
     }
   ]
