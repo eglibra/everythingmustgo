@@ -321,6 +321,6 @@ body {
 .sizer-ticks span { width: 23%; text-align: center; line-height: 1.1; }
 
 /* the tiniest secret button ever */
-.tinybtn { display: block; width: 10px; height: 10px; margin: 18px auto 6px; text-align: center; text-decoration: none; color: #008080; background: #008080; font-size: 10px; line-height: 10px; border: 0; cursor: pointer; }
-.tinybtn:hover { color: #ffff00; background: #000080; }
+.tinybtn { display: block; width: 26px; height: 12px; margin: 16px auto 6px; text-align: center; text-decoration: none; color: #ffff00; background: #000080; font-family: "Courier New", monospace; font-size: 9px; line-height: 12px; border: 1px solid #ffff00; cursor: pointer; opacity: 0.5; }
+.tinybtn:hover { opacity: 1; color: #ff00ff; border-color: #ff00ff; }
 
