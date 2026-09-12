@@ -51,7 +51,7 @@
           var price = it.price || '';
           return '<a class="card" href="item.html?i=' + i + '" data-i="' + i + '">'
             + '<span class="badge">SALE!</span>'
-            + '<img class="thumb" src="' + img + '" alt="' + esc(name) + '" loading="lazy" />'
+            + '<img class="thumb" src="' + relPath(img) + '" alt="' + esc(name) + '" loading="lazy" />'
             + '<div class="info"><div class="name">' + esc(name) + '</div>'
             + '<div class="price">' + esc(price) + '</div></div>'
             + '</a>';
@@ -72,6 +72,14 @@
     function allImages(images) {
       if (!images) return [];
       return images.map(function (a) { return typeof a === 'string' ? a : (a && a.image) || ''; }).filter(Boolean);
+    }
+    // the site is served from a subdirectory (everythingmustgo/), so absolute
+    // paths like "/images/x.png" would miss the subdir. Normalize to relative.
+    function relPath(p) {
+      if (!p) return p;
+      if (/^(https?:)?///.test(p)) return p;   // external URL: leave as-is
+      if (p.charAt(0) === '/') return p.slice(1); // "/images/x" -> "images/x"
+      return p;                                   // already relative
     }
   })();
   </script>
