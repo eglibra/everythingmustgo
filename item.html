@@ -36,7 +36,7 @@
         var items = (data && data.items) || [];
         var it = items[i];
         if (!it) { fail('Item not found. <br><a class="backbtn" href="index.html">&laquo; BACK</a>'); return; }
-        var imgs = (it.images || []).map(function (o) { return o.image; }).filter(Boolean);
+        var imgs = allImages(it.images);
         var name = it.name || '(untitled)';
         var price = it.price || '';
         var desc = it.description || '';
@@ -80,6 +80,15 @@
       return String(s).replace(/[&<>"']/g, function (c) {
         return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
       });
+    }
+    function firstImage(images) {
+      if (!images || !images.length) return '';
+      var a = images[0];
+      return typeof a === 'string' ? a : (a && a.image) || '';
+    }
+    function allImages(images) {
+      if (!images) return [];
+      return images.map(function (a) { return typeof a === 'string' ? a : (a && a.image) || ''; }).filter(Boolean);
     }
   })();
   </script>

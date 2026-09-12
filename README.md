@@ -41,8 +41,8 @@ All items live in one file: `content/catalog.json`. Shape:
       "price": "$8.00",
       "description": "Virtual pet from 1997...",
       "images": [
-        { "image": "/images/sample-1.png" },
-        { "image": "/images/another.png" }
+        "/images/sample-1.png",
+        "/images/another.png"
       ]
     }
   ]

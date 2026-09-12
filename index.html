@@ -46,7 +46,7 @@
         var items = (data && data.items) || [];
         if (!items.length) { fail('No items yet. Add some in the Admin panel!'); return; }
         el.innerHTML = items.map(function (it, i) {
-          var img = (it.images && it.images[0] && it.images[0].image) || '';
+          var img = firstImage(it.images);
           var name = it.name || '(untitled)';
           var price = it.price || '';
           return '<a class="card" href="item.html?i=' + i + '" data-i="' + i + '">'
@@ -62,6 +62,16 @@
       return String(s).replace(/[&<>"']/g, function (c) {
         return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
       });
+    }
+    // images may be a string array ["/x.png"] OR an object array [{image:"/x.png"}]
+    function firstImage(images) {
+      if (!images || !images.length) return '';
+      var a = images[0];
+      return typeof a === 'string' ? a : (a && a.image) || '';
+    }
+    function allImages(images) {
+      if (!images) return [];
+      return images.map(function (a) { return typeof a === 'string' ? a : (a && a.image) || ''; }).filter(Boolean);
     }
   })();
   </script>
