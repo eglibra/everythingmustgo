@@ -88,7 +88,10 @@ the catalog site works fully offline with `content/catalog.json`.
 Sveltia CMS needs a GitHub OAuth app so you can log in and commit changes to the repo.
 
 1. Go to <https://github.com/settings/applications/new> (or your org's app settings).
+   The form has these fields — fill them in:
+   - **Application name:** `Everythingmustgo!` (whatever you like)
    - **Homepage URL:** `https://eglibra.github.io/everythingmustgo/`
+   - **Application description:** `Admin panel for Everythingmustgo!` (whatever you like)
    - **Authorization callback URL:** `https://eglibra.github.io/everythingmustgo/admin/`
 2. After creating it, copy the **Client ID** (starts with `Iv23.`).
 3. Open `admin/config.yml` and replace the placeholder `app_id` value with your Client ID:
@@ -103,8 +106,8 @@ Sveltia CMS needs a GitHub OAuth app so you can log in and commit changes to the
    Sveltia CMS supports PKCE, so **no client secret** is needed.
 4. Commit the change and reload `/admin/`. Sign in with GitHub → you can edit.
 
-> If you change the deploy URL, update `site_url` in `admin/config.yml` and the
-> OAuth callback URL to match.
+> If you change the deploy URL, update `site_url` in `admin/config.yml`, the
+> **Homepage URL**, and the **Authorization callback URL** to match.
 
 ## Notes
 
