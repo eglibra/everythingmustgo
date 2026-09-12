@@ -1,5 +1,7 @@
 # Everythingmustgo!
 
+> A 90's retro, phone-only catalog to sell your stuff.
+
 A 90's retro catalog website to sell your stuff, edited with [Sveltia CMS](https://github.com/sveltia/sveltia-cms).
 Designed for smartphones only — it intentionally caps the layout to a phone-width column.
 
