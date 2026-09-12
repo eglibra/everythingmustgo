@@ -24,8 +24,7 @@
     <div style="margin-top:4px"><a href="index.html">[BACK TO CATALOG]</a></div>
   </div>
 
-  <!-- do not click -->
-  <a href="secret.html" class="tinybtn" title="don't">lol</a>
+
 
   <script>
   (function () {
@@ -55,15 +54,6 @@
               return '<img src="' + esc(relPath(src)) + '" data-src="' + esc(relPath(src)) + '" alt="thumb ' + (n + 1) + '" class="' + (n === 0 ? 'active' : '') + '" />';
             }).join('') + '</div>';
           }
-          // the very serious picture-size adjuster
-          html += '<div class="sizer">';
-          html += '<div class="sizer-label">HOW BIG YOU WANT IT?? &laquo;use the slider&raquo;</div>';
-          html += '<input id="sizer" class="sizer-range" type="range" min="0" max="3" value="0" />';
-          html += '<div class="sizer-readout" id="sizer-readout">Bigger</div>';
-          html += '<div class="sizer-ticks">';
-          html += '<span>Bigger</span><span>Even bigger</span><span>Can you see proprely now?</span><span>ARE YOU BLIND DUDE??</span>';
-          html += '</div>';
-          html += '</div>';
         }
 
         html += '<div class="desc-label">DESCRIPTION:</div>';
@@ -81,24 +71,6 @@
             t.classList.add('active');
           });
         });
-        // picture-size slider: 4 levels of scientific precision
-        (function () {
-          var sizes = ['100%', '140%', '200%', '320%'];
-          var labels = ['Bigger', 'Even bigger', 'Can you see proprely now?', 'ARE YOU BLIND DUDE??'];
-          var slider = document.getElementById('sizer');
-          var readout = document.getElementById('sizer-readout');
-          if (!slider || !big) return;
-          function apply() {
-            var v = parseInt(slider.value, 10);
-            big.style.width = sizes[v];
-            big.style.maxWidth = sizes[v];
-            big.style.height = 'auto';
-            big.style.maxHeight = 'none';
-            if (readout) readout.textContent = labels[v];
-          }
-          slider.addEventListener('input', apply);
-          apply();
-        })();
       })
       .catch(function (e) { fail('Could not load item.<br>Open the site on a web server (not file://).'); });
 
