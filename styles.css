@@ -1,0 +1,313 @@
+/* ===== Everythingmustgo! — 90's retro, mobile-first ===== */
+
+:root {
+  --win-gray: #c0c0c0;
+  --win-dark: #808080;
+  --win-darker: #404040;
+  --win-white: #ffffff;
+  --win-blue: #000080;
+  --neon-pink: #ff00ff;
+  --neon-cyan: #00ffff;
+  --neon-green: #00ff00;
+  --hot-yellow: #ffff00;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: #008080; /* Windows 95 teal desktop */
+}
+
+body {
+  margin: 0;
+  font-family: "Times New Roman", Georgia, serif;
+  color: #000;
+  background: #008080;
+  padding: 6px;
+  max-width: 480px;          /* phone-only: cap width so it looks like a phone even on desktop */
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+}
+
+/* bevelly 95 window look */
+.panel {
+  background: var(--win-gray);
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  padding: 6px;
+}
+
+/* ===== Title bar (blue gradient banner) ===== */
+.titlebar {
+  background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+  color: #fff;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #404040;
+}
+.titlebar .ttl { font-size: 15px; letter-spacing: 0.5px; }
+.titlebar .ctrl { display: flex; gap: 2px; }
+.titlebar .ctrl span {
+  display: inline-block;
+  width: 18px; height: 16px;
+  text-align: center; line-height: 14px;
+  background: #c0c0c0; color: #000;
+  font-size: 11px;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #404040;
+  border-bottom: 1px solid #404040;
+}
+
+/* ===== Big rainbow masthead ===== */
+.masthead {
+  text-align: center;
+  padding: 10px 4px 6px;
+}
+.masthead h1 {
+  margin: 0;
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+  font-size: 30px;
+  line-height: 1;
+  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc00, #00aaff, #aa00ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ff00ff; /* fallback */
+  text-shadow: 1px 1px 0 #000;
+  letter-spacing: 1px;
+}
+.masthead .tagline {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  color: #ffff00;
+  background: #000080;
+  display: inline-block;
+  padding: 1px 6px;
+  margin-top: 6px;
+  border: 1px solid #fff;
+}
+
+/* ===== Marquee ===== */
+.marquee {
+  background: #000;
+  color: #00ff00;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  padding: 3px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 6px 0;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+}
+.marquee span { display: inline-block; padding-left: 100%; animation: scroll 11s linear infinite; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+
+/* ===== Catalog grid ===== */
+.catalog {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 6px;
+}
+.card {
+  background: var(--win-gray);
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  padding: 4px;
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+}
+.card:active {
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+.card .thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #fff;
+  border: 1px solid #404040;
+  display: block;
+  cursor: pointer;
+  -webkit-tap-highlight-color: #ff0;
+}
+.card .info { padding: 4px 2px 2px; }
+.card .name {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 1.15;
+  color: #000080;
+  word-break: break-word;
+}
+.card .price {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 13px;
+  color: #cc0000;
+  margin-top: 2px;
+}
+.card .badge {
+  align-self: flex-start;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  background: #ff00ff;
+  color: #fff;
+  padding: 0 4px;
+  margin-bottom: 2px;
+}
+
+/* ===== Item detail page ===== */
+.backbtn {
+  display: inline-block;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  font-weight: bold;
+  background: var(--win-gray);
+  color: #000;
+  text-decoration: none;
+  padding: 3px 10px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  margin: 6px 0;
+}
+.backbtn:active {
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.detail-title {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+  font-size: 22px;
+  color: #000080;
+  margin: 4px 0 2px;
+  word-break: break-word;
+  text-shadow: 1px 1px 0 #ffff00;
+}
+.detail-price {
+  font-family: "Courier New", monospace;
+  font-size: 18px;
+  font-weight: bold;
+  color: #cc0000;
+  background: #ffff00;
+  display: inline-block;
+  padding: 1px 8px;
+  border: 1px solid #000;
+  margin: 4px 0;
+}
+
+/* image viewer: thumbnails strip + big image */
+.bigimg-wrap {
+  background: #000;
+  border: 2px solid #404040;
+  padding: 4px;
+  margin: 6px 0;
+  text-align: center;
+}
+.bigimg {
+  max-width: 100%;
+  max-height: 60vh;
+  border: 1px solid #fff;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+.thumbs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 6px 2px 2px;
+  justify-content: flex-start;
+}
+.thumbs img {
+  width: 48px; height: 48px;
+  object-fit: cover;
+  border: 2px solid #404040;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.thumbs img.active { border-color: #ffff00; }
+
+.desc-label {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 13px;
+  color: #fff;
+  background: #000080;
+  padding: 2px 6px;
+  display: inline-block;
+  margin-top: 8px;
+}
+.description {
+  font-family: "Times New Roman", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.4;
+  background: #fff;
+  padding: 8px;
+  border: 1px solid #404040;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-top: 4px;
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  margin-top: 14px;
+  padding: 6px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #fff;
+  background: #000080;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+}
+.footer a { color: #ffff00; }
+.counter {
+  display: inline-block;
+  background: #000;
+  color: #00ff00;
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  padding: 2px 6px;
+  border: 1px solid #fff;
+  margin: 4px 0;
+  letter-spacing: 2px;
+}
+.hits { font-size: 10px; color: #fff; }
+
+/* ===== Loading / empty states ===== */
+.loading, .empty {
+  font-family: "Courier New", monospace;
+  text-align: center;
+  padding: 20px 6px;
+  color: #000;
+}
+.empty { color: #000080; }
+
+/* blink for fun */
+.blink { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }

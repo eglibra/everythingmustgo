@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "name": "Tamagotchi (Used)",
+      "price": "$8.00",
+      "description": "Virtual pet from 1997. Beeps at night. Still works! Batteries not included.",
+      "images": [
+        { "image": "/images/sample-1.png" }
+      ]
+    },
+    {
+      "name": "Furbie",
+      "price": "$12.00",
+      "description": "Fuzzy talking creature. Slightly creepy but very cute. Good condition.",
+      "images": [
+        { "image": "/images/sample-2.png" }
+      ]
+    },
+    {
+      "name": "Yoyo (Glow)",
+      "price": "$3.50",
+      "description": "Glow in the dark yoyo. Classic 90s toy. Goes up, goes down.",
+      "images": [
+        { "image": "/images/sample-3.png" }
+      ]
+    }
+  ]
+}

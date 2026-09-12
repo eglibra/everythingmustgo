@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#008080" />
+  <title>Item — Everythingmustgo!</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="titlebar">
+    <span class="ttl">Everythingmustgo! - [Item]</span>
+    <span class="ctrl"><span>_</span><span>&#9633;</span><span>X</span></span>
+  </div>
+
+  <a class="backbtn" href="index.html">&laquo; BACK</a>
+
+  <div id="detail">
+    <p class="loading">Loading item<span class="blink">_</span></p>
+  </div>
+
+  <div class="footer">
+    <div>&copy; 1999 Everythingmustgo!</div>
+    <div style="margin-top:4px"><a href="index.html">[BACK TO CATALOG]</a></div>
+  </div>
+
+  <script>
+  (function () {
+    var el = document.getElementById('detail');
+    var i = parseInt(new URLSearchParams(location.search).get('i'), 10);
+    if (isNaN(i)) { fail('No item selected.'); return; }
+
+    fetch('content/catalog.json', { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (data) {
+        var items = (data && data.items) || [];
+        var it = items[i];
+        if (!it) { fail('Item not found. <br><a class="backbtn" href="index.html">&laquo; BACK</a>'); return; }
+        var imgs = (it.images || []).map(function (o) { return o.image; }).filter(Boolean);
+        var name = it.name || '(untitled)';
+        var price = it.price || '';
+        var desc = it.description || '';
+
+        var html = '';
+        html += '<h1 class="detail-title">' + esc(name) + '</h1>';
+        html += '<div><span class="detail-price">' + esc(price) + '</span></div>';
+
+        if (imgs.length) {
+          html += '<div class="bigimg-wrap"><img id="big" class="bigimg" src="' + esc(imgs[0]) + '" alt="' + esc(name) + '" /></div>';
+          if (imgs.length > 1) {
+            html += '<div class="thumbs">' + imgs.map(function (src, n) {
+              return '<img src="' + esc(src) + '" data-src="' + esc(src) + '" alt="thumb ' + (n + 1) + '" class="' + (n === 0 ? 'active' : '') + '" />';
+            }).join('') + '</div>';
+          }
+        }
+
+        html += '<div class="desc-label">DESCRIPTION:</div>';
+        html += '<div class="description">' + esc(desc) + '</div>';
+
+        html += '<a class="backbtn" href="index.html">&laquo; BACK TO CATALOG</a>';
+
+        el.innerHTML = html;
+
+        var big = document.getElementById('big');
+        el.querySelectorAll('.thumbs img').forEach(function (t) {
+          t.addEventListener('click', function () {
+            big.src = t.getAttribute('data-src');
+            el.querySelectorAll('.thumbs img').forEach(function (x) { x.classList.remove('active'); });
+            t.classList.add('active');
+          });
+        });
+      })
+      .catch(function (e) { fail('Could not load item.<br>Open the site on a web server (not file://).'); });
+
+    function fail(msg) {
+      el.className = '';
+      el.innerHTML = '<div class="panel empty">' + msg + '</div>';
+    }
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

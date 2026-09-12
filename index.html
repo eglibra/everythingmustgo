@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#008080" />
+  <title>Everythingmustgo!</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="titlebar">
+    <span class="ttl">Everythingmustgo! - [Catalog]</span>
+    <span class="ctrl"><span>_</span><span>&#9633;</span><span>X</span></span>
+  </div>
+
+  <div class="masthead">
+    <h1>Everythingmustgo!</h1>
+    <div class="tagline">Y2K CLEARANCE SALE &middot; ALL MUST GO!!!</div>
+  </div>
+
+  <div class="marquee"><span>&#9733; WELCOME!!! &#9733; EVERYTHING MUST GO!!! &#9733; LOW PRICES!!! &#9733; BUY NOW!!! &#9733; NEW ITEMS ADDED DAILY!!! &#9733; </span></div>
+
+  <div id="catalog" class="catalog">
+    <p class="loading">Loading catalog<span class="blink">_</span></p>
+  </div>
+
+  <div class="footer">
+    <div class="counter">00001337</div>
+    <div class="hits">YOU ARE VISITOR #1337 &middot; BEST VIEWED ON A CELLPHONE</div>
+    <div style="margin-top:6px">&copy; 1999 Everythingmustgo! &middot; <a href="admin/">[ADMIN]</a></div>
+  </div>
+
+  <script>
+  (function () {
+    var el = document.getElementById('catalog');
+    function fail(msg) {
+      el.className = '';
+      el.innerHTML = '<div class="panel empty">' + msg + '</div>';
+    }
+    fetch('content/catalog.json', { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        var items = (data && data.items) || [];
+        if (!items.length) { fail('No items yet. Add some in the Admin panel!'); return; }
+        el.innerHTML = items.map(function (it, i) {
+          var img = (it.images && it.images[0] && it.images[0].image) || '';
+          var name = it.name || '(untitled)';
+          var price = it.price || '';
+          return '<a class="card" href="item.html?i=' + i + '" data-i="' + i + '">'
+            + '<span class="badge">SALE!</span>'
+            + '<img class="thumb" src="' + img + '" alt="' + esc(name) + '" loading="lazy" />'
+            + '<div class="info"><div class="name">' + esc(name) + '</div>'
+            + '<div class="price">' + esc(price) + '</div></div>'
+            + '</a>';
+        }).join('');
+      })
+      .catch(function (e) { fail('Could not load catalog.<br>Open the site on a web server (not file://).'); });
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

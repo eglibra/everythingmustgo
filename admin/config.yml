@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+backend:
+  name: github
+  repo: eglibra/everythingmustgo
+  branch: main
+  auth_type: pkce
+  app_id: "Iv23liaxxxxxxxxxxxxxxxx"
+
+media_folder: "images"
+public_folder: "/images"
+
+site_url: /
+
+collections:
+  - name: "catalog"
+    label: "Catalog"
+    label_singular: "Catalog"
+    files:
+      - label: "Items"
+        name: "items"
+        file: "content/catalog.json"
+        description: "All the stuff you're selling. Add as many items as you like."
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            label_singular: "Item"
+            min: 1
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string", hint: "e.g. $5.00 or 5€" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Images"
+                name: "images"
+                widget: "list"
+                label_singular: "Image"
+                min: 1
+                summary: "{{image}}"
+                field:
+                  { label: "Image", name: "image", widget: "image" }
