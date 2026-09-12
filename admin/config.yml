@@ -4,8 +4,6 @@ backend:
   name: github
   repo: eglibra/everythingmustgo
   branch: main
-  auth_type: pkce
-  app_id: "Iv23liaxxxxxxxxxxxxxxxx"
 
 media_folder: "images"
 public_folder: "/images"
