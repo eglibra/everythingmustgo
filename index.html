@@ -77,7 +77,7 @@
     // paths like "/images/x.png" would miss the subdir. Normalize to relative.
     function relPath(p) {
       if (!p) return p;
-      if (/^(https?:)?///.test(p)) return p;   // external URL: leave as-is
+      if (p.indexOf('//') === 0 || p.indexOf('https://') === 0 || p.indexOf('http://') === 0) return p; // external URL
       if (p.charAt(0) === '/') return p.slice(1); // "/images/x" -> "images/x"
       return p;                                   // already relative
     }
