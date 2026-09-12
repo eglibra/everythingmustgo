@@ -46,10 +46,10 @@
         html += '<div><span class="detail-price">' + esc(price) + '</span></div>';
 
         if (imgs.length) {
-          html += '<div class="bigimg-wrap"><img id="big" class="bigimg" src="' + esc(imgs[0]) + '" alt="' + esc(name) + '" /></div>';
+          html += '<div class="bigimg-wrap"><img id="big" class="bigimg" src="' + esc(relPath(imgs[0])) + '" alt="' + esc(name) + '" /></div>';
           if (imgs.length > 1) {
             html += '<div class="thumbs">' + imgs.map(function (src, n) {
-              return '<img src="' + esc(src) + '" data-src="' + esc(src) + '" alt="thumb ' + (n + 1) + '" class="' + (n === 0 ? 'active' : '') + '" />';
+              return '<img src="' + esc(relPath(src)) + '" data-src="' + esc(relPath(src)) + '" alt="thumb ' + (n + 1) + '" class="' + (n === 0 ? 'active' : '') + '" />';
             }).join('') + '</div>';
           }
         }
@@ -64,7 +64,7 @@
         var big = document.getElementById('big');
         el.querySelectorAll('.thumbs img').forEach(function (t) {
           t.addEventListener('click', function () {
-            big.src = t.getAttribute('data-src');
+            big.src = t.getAttribute('data-src'); // data-src already normalized
             el.querySelectorAll('.thumbs img').forEach(function (x) { x.classList.remove('active'); });
             t.classList.add('active');
           });
@@ -89,6 +89,12 @@
     function allImages(images) {
       if (!images) return [];
       return images.map(function (a) { return typeof a === 'string' ? a : (a && a.image) || ''; }).filter(Boolean);
+    }
+    function relPath(p) {
+      if (!p) return p;
+      if (/^(https?:)?\/\//.test(p)) return p;
+      if (p.charAt(0) === '/') return p.slice(1);
+      return p;
     }
   })();
   </script>
