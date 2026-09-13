@@ -12,11 +12,13 @@
       ]
     },
     {
-      "name": "Furbie",
-      "price": "$12.00",
-      "description": "Fuzzy talking creature. Slightly creepy but very cute. Good condition.",
+      "name": "iPhone 12",
+      "price": "1200R$",
+      "description": "It’s a dark iPhone 12 that’s for sure. 256Gb, plenty of space for your screenshots and 50 copies of that same picture you’d hate to erase the other 49. And the battery is around 70%, probably enough for your day. You’ll learn to love it (eventually)",
       "images": [
-        "/images/sample-2.png"
+        "/images/IMG_2713.jpeg",
+        "/images/IMG_2714.jpeg",
+        "/images/IMG_2715.jpeg"
       ]
     },
     {
